@@ -5,29 +5,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.fragmentwithdatabindingplayground.R
-import com.example.fragmentwithdatabindingplayground.ui.main.MainFragment
-import com.example.fragmentwithdatabindingplayground.ui.main.MainViewModel
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.*
+import com.example.fragmentwithdatabindingplayground.databinding.DetailFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
-    companion object {
-        fun newInstance() = MainFragment()
-    }
 
-    private lateinit var viewModel: MainViewModel
+    private var _binding: DetailFragmentBinding? = null
+    private val binding get() = _binding!!
+
+    private val viewModel: DetailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.detail_fragment, container, false)
+        _binding = DetailFragmentBinding.inflate(inflater, container, false)
+        _binding?.lifecycleOwner = viewLifecycleOwner
+        _binding?.viewmodel = viewModel
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

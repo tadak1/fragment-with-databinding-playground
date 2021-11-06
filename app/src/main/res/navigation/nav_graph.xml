@@ -5,21 +5,47 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/main_fragment">
 
+    <dialog
+        android:id="@+id/confirm_dialog_fragment"
+        android:name="com.example.fragmentwithdatabindingplayground.ui.dialog.ConfirmDialog"
+        android:label="ConfirmDialogFragment" >
+        <action
+            android:id="@+id/action_confirm_dialog_fragment_to_main_fragment"
+            app:destination="@id/main_fragment"
+            app:popUpTo="@id/main_fragment"
+            app:popUpToInclusive="true"/>
+    </dialog>
+    <dialog
+        android:id="@+id/example_bottom_sheet"
+        android:name="com.example.fragmentwithdatabindingplayground.ui.dialog.ExampleBottomSheet"
+        android:label="ExampleBottomSheet">
+        <action
+            android:id="@+id/action_example_bottom_sheet_to_main_fragment"
+            app:destination="@id/main_fragment"
+            app:popUpTo="@id/main_fragment"
+            app:popUpToInclusive="true"/>
+    </dialog>
+    <fragment
+        android:id="@+id/detail_fragment"
+        android:name="com.example.fragmentwithdatabindingplayground.ui.detail.DetailFragment"
+        android:label="DetailFragment" />
     <fragment
         android:id="@+id/main_fragment"
         android:name="com.example.fragmentwithdatabindingplayground.ui.main.MainFragment"
         android:label="main_fragment"
         tools:layout="@layout/main_fragment">
         <action
-            android:id="@+id/action_main_fragment_to_detailFragment"
-            app:destination="@id/detailFragment"
+            android:id="@+id/action_main_fragment_to_detail_fragment"
+            app:destination="@id/detail_fragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_main_fragment_to_confirm_dialog_fragment"
+            app:destination="@id/confirm_dialog_fragment" />
+        <action
+            android:id="@+id/action_main_fragment_to_example_bottom_sheet"
+            app:destination="@id/example_bottom_sheet" />
     </fragment>
-    <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.example.fragmentwithdatabindingplayground.ui.detail.DetailFragment"
-        android:label="DetailFragment" />
 </navigation>

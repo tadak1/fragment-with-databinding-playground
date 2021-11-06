@@ -13,11 +13,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
@@ -28,7 +23,12 @@ class MainFragment : Fragment() {
         return inflater.inflate(R.layout.main_fragment, container, false).apply {
             findViewById<Button>(R.id.detail_fragment_button).apply {
                 setOnClickListener {
-                    findNavController().navigate(R.id.action_main_fragment_to_detailFragment)
+                    findNavController().navigate(MainFragmentDirections.actionMainFragmentToExampleBottomSheet())
+                }
+            }
+            findViewById<Button>(R.id.detail_fragment_button2).apply {
+                setOnClickListener {
+                    findNavController().navigate(MainFragmentDirections.actionMainFragmentToConfirmDialogFragment())
                 }
             }
         }

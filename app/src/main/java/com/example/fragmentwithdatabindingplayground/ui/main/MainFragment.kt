@@ -28,7 +28,7 @@ class MainFragment : Fragment() {
             }
             findViewById<Button>(R.id.detail_fragment_button2).apply {
                 setOnClickListener {
-                    findNavController().navigate(MainFragmentDirections.actionMainFragmentToConfirmDialogFragment())
+                    findNavController().navigate(MainFragmentDirections.actionMainFragmentToListViewFragment())
                 }
             }
         }
